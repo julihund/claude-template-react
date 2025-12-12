@@ -1,0 +1,45 @@
+{
+  "mcpServers": {
+    "sqlite": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-sqlite",
+        "--db-path",
+        "server/montavis.db"
+      ]
+    },
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\client",
+        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\server",
+        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\.context",
+        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\.claude"
+      ]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    }
+  }
+}

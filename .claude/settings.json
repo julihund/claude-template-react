@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Read(c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\**)",
+      "Glob(c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\**)",
+      "Grep(c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\**)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "mcp__playwright__*",
+      "mcp__filesystem__*",
+      "mcp__sqlite__*",
+      "mcp__github__*",
+      "Task(*)"
+    ],
+    "deny": []
+  }
+}
