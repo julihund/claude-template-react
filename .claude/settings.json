@@ -27,14 +27,18 @@
     }
   },
   "allowedTools": [
-    "Bash",
-    "Read",
-    "Write",
-    "Edit",
-    "Glob",
-    "Grep",
-    "Task",
-    "mcp__*"
+   "Bash(*)",
+    "Edit(*)",
+    "Write(*)",
+    "Read(C:\\Users\\jhund\\Desktop\\software\\julian\\**)",
+    "Glob(C:\\Users\\jhund\\Desktop\\software\\julian\\**)",
+    "Grep(C:\\Users\\jhund\\Desktop\\software\\julian\\**)",
+    "WebFetch(*)",
+    "mcp__playwright__*",
+    "mcp__filesystem__*",
+    "mcp__sqlite__*",
+    "mcp__github__*",
+    "Task(*)"
   ],
   "contextWindow": 200000
 }

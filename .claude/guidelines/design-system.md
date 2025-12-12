@@ -1,23 +1,31 @@
 # Design System
 
+### No Pixels Policy
+
+**Never use pixel values.** Use:
+
+- `rem` for typography and spacing
+- Tailwind classes for consistency
+- CSS variables for theming
+
 ## HSL Color Palette
 
 Our design system uses **HSL (Hue, Saturation, Lightness)** for consistent, accessible color management across themes. Customize these values for your brand.
 
 ### Color Tokens
 
-| Name | HSL | Tailwind Class | Usage |
-|------|-----|----------------|-------|
-| Background | `hsl(210, 44%, 11%)` | `bg-background` | Dark theme base, app background |
-| Surface | `hsl(210, 44%, 15%)` | `bg-surface` | Cards, panels, elevated elements |
-| Primary | `hsl(187, 69%, 62%)` | `bg-primary` | Primary actions, interactive elements |
-| Secondary | `hsl(265, 89%, 78%)` | `bg-secondary` | Accents, highlights, secondary actions |
-| Success | `hsl(142, 76%, 56%)` | `bg-success` | Success states, confirmations |
-| Warning | `hsl(38, 92%, 60%)` | `bg-warning` | Warning states, alerts |
-| Error | `hsl(0, 84%, 60%)` | `bg-error` | Error states, destructive actions |
-| Text Primary | `hsl(210, 44%, 97%)` | `text-primary` | Main text, headings |
-| Text Secondary | `hsl(210, 44%, 70%)` | `text-secondary` | Secondary text, captions |
-| Border | `hsl(210, 44%, 25%)` | `border-border` | Borders, dividers |
+| Name           | HSL                  | Tailwind Class   | Usage                                  |
+| -------------- | -------------------- | ---------------- | -------------------------------------- |
+| Background     | `hsl(210, 44%, 11%)` | `bg-background`  | Dark theme base, app background        |
+| Surface        | `hsl(210, 44%, 15%)` | `bg-surface`     | Cards, panels, elevated elements       |
+| Primary        | `hsl(187, 69%, 62%)` | `bg-primary`     | Primary actions, interactive elements  |
+| Secondary      | `hsl(265, 89%, 78%)` | `bg-secondary`   | Accents, highlights, secondary actions |
+| Success        | `hsl(142, 76%, 56%)` | `bg-success`     | Success states, confirmations          |
+| Warning        | `hsl(38, 92%, 60%)`  | `bg-warning`     | Warning states, alerts                 |
+| Error          | `hsl(0, 84%, 60%)`   | `bg-error`       | Error states, destructive actions      |
+| Text Primary   | `hsl(210, 44%, 97%)` | `text-primary`   | Main text, headings                    |
+| Text Secondary | `hsl(210, 44%, 70%)` | `text-secondary` | Secondary text, captions               |
+| Border         | `hsl(210, 44%, 25%)` | `border-border`  | Borders, dividers                      |
 
 ### Tailwind Configuration
 
@@ -28,24 +36,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        surface: 'hsl(var(--surface))',
+        background: "hsl(var(--background))",
+        surface: "hsl(var(--surface))",
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          hover: 'hsl(var(--primary-hover))',
-          selected: 'hsl(var(--primary-selected))',
-          active: 'hsl(var(--primary-active))',
+          DEFAULT: "hsl(var(--primary))",
+          hover: "hsl(var(--primary-hover))",
+          selected: "hsl(var(--primary-selected))",
+          active: "hsl(var(--primary-active))",
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          hover: 'hsl(var(--secondary-hover))',
+          DEFAULT: "hsl(var(--secondary))",
+          hover: "hsl(var(--secondary-hover))",
         },
-        success: 'hsl(var(--success))',
-        warning: 'hsl(var(--warning))',
-        error: 'hsl(var(--error))',
-        'text-primary': 'hsl(var(--text-primary))',
-        'text-secondary': 'hsl(var(--text-secondary))',
-        border: 'hsl(var(--border))',
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        error: "hsl(var(--error))",
+        "text-primary": "hsl(var(--text-primary))",
+        "text-secondary": "hsl(var(--text-secondary))",
+        border: "hsl(var(--border))",
       },
     },
   },
@@ -60,11 +68,11 @@ Add to your global CSS (`src/index.css`):
   --background: 210 44% 11%;
   --surface: 210 44% 15%;
   --primary: 187 69% 62%;
-  --primary-hover: 187 69% 70%;      /* +8% lightness */
-  --primary-selected: 187 69% 74%;   /* +12% lightness */
-  --primary-active: 187 69% 84%;     /* +22% lightness */
+  --primary-hover: 187 69% 70%; /* +8% lightness */
+  --primary-selected: 187 69% 74%; /* +12% lightness */
+  --primary-active: 187 69% 84%; /* +22% lightness */
   --secondary: 265 89% 78%;
-  --secondary-hover: 265 89% 86%;    /* +8% lightness */
+  --secondary-hover: 265 89% 86%; /* +8% lightness */
   --success: 142 76% 56%;
   --warning: 38 92% 60%;
   --error: 0 84% 60%;
@@ -77,10 +85,10 @@ Add to your global CSS (`src/index.css`):
 [data-theme="light"] {
   --background: 0 0% 100%;
   --surface: 210 44% 98%;
-  --primary: 187 69% 42%;            /* Darker for light theme */
-  --primary-hover: 187 69% 37%;      /* -5% lightness */
-  --primary-selected: 187 69% 32%;   /* -10% lightness */
-  --primary-active: 187 69% 24%;     /* -18% lightness */
+  --primary: 187 69% 42%; /* Darker for light theme */
+  --primary-hover: 187 69% 37%; /* -5% lightness */
+  --primary-selected: 187 69% 32%; /* -10% lightness */
+  --primary-active: 187 69% 24%; /* -18% lightness */
   --text-primary: 210 44% 10%;
   --text-secondary: 210 44% 40%;
   --border: 210 44% 85%;
@@ -93,25 +101,26 @@ Interactive elements use **lightness shifts** for hover, selected, and active st
 
 ### Dark Theme States
 
-| State | Lightness Adjustment | Example (Primary) |
-|-------|---------------------|-------------------|
-| Default | Base | `hsl(187, 69%, 62%)` |
-| Hover | +8% lightness | `hsl(187, 69%, 70%)` |
-| Selected / Focus | +12% lightness | `hsl(187, 69%, 74%)` |
-| Active / Pressed | +22% lightness | `hsl(187, 69%, 84%)` |
+| State            | Lightness Adjustment | Example (Primary)    |
+| ---------------- | -------------------- | -------------------- |
+| Default          | Base                 | `hsl(187, 69%, 62%)` |
+| Hover            | +8% lightness        | `hsl(187, 69%, 70%)` |
+| Selected / Focus | +12% lightness       | `hsl(187, 69%, 74%)` |
+| Active / Pressed | +22% lightness       | `hsl(187, 69%, 84%)` |
 
 ### Light Theme States
 
-| State | Lightness Adjustment | Example (Primary) |
-|-------|---------------------|-------------------|
-| Default | Base | `hsl(187, 69%, 42%)` |
-| Hover | -5% lightness | `hsl(187, 69%, 37%)` |
-| Selected / Focus | -10% lightness | `hsl(187, 69%, 32%)` |
-| Active / Pressed | -18% lightness | `hsl(187, 69%, 24%)` |
+| State            | Lightness Adjustment | Example (Primary)    |
+| ---------------- | -------------------- | -------------------- |
+| Default          | Base                 | `hsl(187, 69%, 42%)` |
+| Hover            | -5% lightness        | `hsl(187, 69%, 37%)` |
+| Selected / Focus | -10% lightness       | `hsl(187, 69%, 32%)` |
+| Active / Pressed | -18% lightness       | `hsl(187, 69%, 24%)` |
 
 ### Button Component Example
 
 ❌ **Bad** (hard-coded colors):
+
 ```typescript
 function Button({ children }: ButtonProps) {
   return (
@@ -123,20 +132,22 @@ function Button({ children }: ButtonProps) {
 ```
 
 ✅ **Good** (using design tokens):
+
 ```typescript
 interface ButtonProps {
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   children: React.ReactNode;
 }
 
-function Button({ variant = 'primary', children }: ButtonProps) {
+function Button({ variant = "primary", children }: ButtonProps) {
   return (
     <button
       className={`
         px-4 py-2 rounded-md font-medium transition-colors
-        ${variant === 'primary'
-          ? 'bg-primary hover:bg-primary-hover active:bg-primary-active text-white'
-          : 'bg-secondary hover:bg-secondary-hover text-white'
+        ${
+          variant === "primary"
+            ? "bg-primary hover:bg-primary-hover active:bg-primary-active text-white"
+            : "bg-secondary hover:bg-secondary-hover text-white"
         }
       `}
     >
@@ -149,6 +160,7 @@ function Button({ variant = 'primary', children }: ButtonProps) {
 ### Input Component Example
 
 ✅ **Good** (focus states with lightness):
+
 ```typescript
 function Input({ ...props }: InputProps) {
   return (
@@ -170,19 +182,20 @@ function Input({ ...props }: InputProps) {
 
 ### Tailwind Breakpoints
 
-| Breakpoint | Min Width | Usage |
-|------------|-----------|-------|
-| `sm` | 640px | Small tablets, large phones |
-| `md` | 768px | Tablets |
-| `lg` | 1024px | Laptops, small desktops |
-| `xl` | 1280px | Desktops |
-| `2xl` | 1536px | Large desktops |
+| Breakpoint | Min Width | Usage                       |
+| ---------- | --------- | --------------------------- |
+| `sm`       | 640px     | Small tablets, large phones |
+| `md`       | 768px     | Tablets                     |
+| `lg`       | 1024px    | Laptops, small desktops     |
+| `xl`       | 1280px    | Desktops                    |
+| `2xl`      | 1536px    | Large desktops              |
 
 ### Mobile-First Approach
 
 Always design for mobile first, then add complexity for larger screens using breakpoints.
 
 ❌ **Bad** (desktop-first):
+
 ```tsx
 <div className="grid grid-cols-3 md:grid-cols-1">
   {/* Starts with 3 columns, collapses to 1 on mobile */}
@@ -190,6 +203,7 @@ Always design for mobile first, then add complexity for larger screens using bre
 ```
 
 ✅ **Good** (mobile-first):
+
 ```tsx
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
   {/* Starts with 1 column, expands on larger screens */}
@@ -201,12 +215,14 @@ Always design for mobile first, then add complexity for larger screens using bre
 ```typescript
 function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="
+    <div
+      className="
       bg-surface rounded-lg p-4
       flex flex-col gap-3
       md:flex-row md:gap-6
       lg:p-6
-    ">
+    "
+    >
       <img
         src={product.image}
         alt={product.name}
@@ -258,6 +274,7 @@ function IconButton({ icon, onClick }: IconButtonProps) {
 Create a library of reusable UI components in `src/components/ui/`:
 
 ✅ **Good structure**:
+
 ```
 src/components/ui/
 ├── Button.tsx        # Primary, secondary, danger variants
@@ -271,6 +288,7 @@ src/components/ui/
 ### Avoid Component Duplication
 
 ❌ **Bad** (creating similar components):
+
 ```typescript
 // SubmitButton.tsx
 function SubmitButton() {
@@ -289,6 +307,7 @@ function DeleteButton() {
 ```
 
 ✅ **Good** (one reusable component):
+
 ```typescript
 // Button.tsx
 type ButtonVariant = 'primary' | 'secondary' | 'danger';
@@ -364,29 +383,37 @@ function ArticlePage() {
 
 Use Tailwind's default spacing scale (based on 0.25rem = 4px):
 
-| Class | Size | Pixels | Usage |
-|-------|------|--------|-------|
-| `gap-1` | 0.25rem | 4px | Tight spacing |
-| `gap-2` | 0.5rem | 8px | Small gaps |
-| `gap-3` | 0.75rem | 12px | Default gaps |
-| `gap-4` | 1rem | 16px | Medium gaps |
-| `gap-6` | 1.5rem | 24px | Large gaps |
-| `gap-8` | 2rem | 32px | Section spacing |
+| Class   | Size    | Pixels | Usage           |
+| ------- | ------- | ------ | --------------- |
+| `gap-1` | 0.25rem | 4px    | Tight spacing   |
+| `gap-2` | 0.5rem  | 8px    | Small gaps      |
+| `gap-3` | 0.75rem | 12px   | Default gaps    |
+| `gap-4` | 1rem    | 16px   | Medium gaps     |
+| `gap-6` | 1.5rem  | 24px   | Large gaps      |
+| `gap-8` | 2rem    | 32px   | Section spacing |
 
 Example:
 
 ```tsx
 function UserProfile() {
   return (
-    <div className="flex flex-col gap-6">  {/* 24px between sections */}
-      <header className="flex items-center gap-4">  {/* 16px between avatar and name */}
+    <div className="flex flex-col gap-6">
+      {" "}
+      {/* 24px between sections */}
+      <header className="flex items-center gap-4">
+        {" "}
+        {/* 16px between avatar and name */}
         <img className="w-12 h-12 rounded-full" />
-        <div className="flex flex-col gap-1">  {/* 4px between name and subtitle */}
+        <div className="flex flex-col gap-1">
+          {" "}
+          {/* 4px between name and subtitle */}
           <h2>John Doe</h2>
           <p className="text-sm">Software Engineer</p>
         </div>
       </header>
-      <section className="flex flex-col gap-3">  {/* 12px between items */}
+      <section className="flex flex-col gap-3">
+        {" "}
+        {/* 12px between items */}
         <p>Bio content...</p>
         <p>More content...</p>
       </section>
@@ -400,6 +427,7 @@ function UserProfile() {
 ### Color Contrast
 
 Ensure WCAG AA compliance (4.5:1 contrast ratio for normal text):
+
 - Text Primary on Background: ✅ Pass
 - Text Secondary on Surface: ✅ Pass
 - Primary button text: ✅ Pass
@@ -411,11 +439,13 @@ Test contrast at https://webaim.org/resources/contrastchecker/
 Always provide visible focus indicators:
 
 ```tsx
-<button className="
+<button
+  className="
   focus:outline-none
   focus:ring-2 focus:ring-primary-selected
   focus:ring-offset-2 focus:ring-offset-background
-">
+"
+>
   Accessible Button
 </button>
 ```

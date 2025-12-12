@@ -13,6 +13,13 @@ React 18 + Vite + TypeScript + Tailwind | FastAPI + SQLAlchemy async | SQLite (d
 - `app/models/` - SQLAlchemy models
 - See `.claude/guidelines/` for coding standards, design system, security, testing, database
 
+## 📚 Documentation & Context
+- **Start Here:** [docs/README.md](docs/README.md)
+- **Current Status:** [docs/active-context.md](docs/active-context.md) (Read this to know what we are working on)
+- **Architecture:** [docs/architecture/system-design.md](docs/architecture/system-design.md)
+- **Database:** [docs/db/schema.md](docs/db/schema.md)
+- **API:** [docs/api/endpoints.md](docs/api/endpoints.md)
+
 ## Commands
 ```bash
 npm run dev              # Frontend (localhost:5173)
