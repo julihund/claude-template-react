@@ -1,332 +1,212 @@
-# Claude Code Configuration
+# Claude Code Template for React + Vite + FastAPI
 
-This directory contains the complete Claude Code configuration for agentisches development.
+Production-ready Claude Code configuration following [official best practices](https://www.anthropic.com/engineering/claude-code-best-practices).
 
-## Structure
+## Quick Start
+
+1. **Copy `.claude/` folder** into your project root
+2. **Run `/init`** to auto-generate project-specific CLAUDE.md
+3. **Update "Current Focus"** section in CLAUDE.md as you work
+4. **Start coding** - Claude automatically loads configuration
+
+## What to Modify Per Project
+
+✅ **Only modify**: `CLAUDE.md` "Current Focus" section (2-3 active tasks)
+
+❌ **Don't modify**: Guidelines, agents, skills, commands (reusable across all projects)
+
+## File Structure (18 files total)
 
 ```
 .claude/
-├── agents/                      # Specialized subagents
-│   ├── python-api-expert.json   # Backend specialist
-│   ├── react-ts-expert.json     # Frontend specialist
-│   ├── contract-tester.json     # QA specialist
-│   └── dependency-synchronizer.json  # Package management
-├── commands/                    # Slash commands
-│   ├── setup-project.md         # Environment initialization
-│   ├── multi-agent-review.md    # Coordinated code review
-│   └── smart-debug.md           # Intelligent error analysis
-├── settings.json                # Permissions and configuration
-└── README.md                    # This file
+├── CLAUDE.md                    # ⭐ Minimal context (43 lines, user customizes "Current Focus")
+├── README.md                    # This file
+├── settings.json                # MCP servers (Playwright, GitHub, SQLite, filesystem)
+│
+├── guidelines/ (5 files)        # Reference docs (loaded by agents, NOT in main context)
+│   ├── coding-standards.md      # Self-documenting code, naming conventions
+│   ├── design-system.md         # HSL colors + Tailwind + lightness states
+│   ├── security.md              # OWASP Top 10 prevention
+│   ├── testing.md               # TDD workflow (Red-Green-Refactor)
+│   └── database.md              # SQLAlchemy async + migrations + offline sync
+│
+├── skills/ (2 files)            # Lightweight domain knowledge
+│   ├── design-system.md         # Apply HSL palette + Tailwind
+│   └── tdd.md                   # Guide test-first development
+│
+├── agents/ (4 files)            # Complex multi-step tasks
+│   ├── implement-ui-component.md # TDD + Playwright visual tests + design system
+│   ├── review-pr.md              # Run all tests + check all guidelines
+│   ├── fix-security-issue.md     # OWASP audit + automated/manual scans
+│   └── create-db-migration.md    # Alembic migrations + safety checks
+│
+└── commands/ (7 files)          # Parametrized slash commands
+    ├── init.md                  # /init - Generate CLAUDE.md from codebase
+    ├── review.md                # /review - Spawn review-pr agent
+    ├── test.md                  # /test [filter] - Run test suite
+    ├── test-browser.md          # /test-browser <url> - Playwright visual testing
+    ├── security-review.md       # /security-review - Spawn security agent
+    ├── migrate.md               # /migrate <name> - Create DB migration
+    └── component.md             # /component <Name> - Create UI component
 ```
 
-## Agents
+## How to Use
 
-### python-api-expert
+### Slash Commands
 
-**Expertise**: FastAPI, SQLAlchemy 2.0 async, Pydantic v2, multi-tenant security
+Quick actions (7 commands total):
 
-**Use for:**
-- Implementing API endpoints
-- Database queries and migrations
-- Authentication and authorization
-- Backend business logic
+- **/init** - Auto-generate CLAUDE.md by analyzing codebase
+- **/review** - Comprehensive code review against all guidelines
+- **/test** [filter] - Run test suite (Vitest + Playwright + pytest)
+- **/test-browser <url>** - Visual testing with Playwright (screenshots, accessibility)
+- **/security-review** - OWASP Top 10 audit + dependency scans
+- **/migrate <name>** - Create Alembic database migration
+- **/component <Name>** - Create UI component with TDD + Playwright tests
 
-**Critical Rules:**
-- Always use async/await
-- Always filter by company_id for multi-tenant isolation
-- Always validate permissions before data access
-- Use Pydantic v2 for validation
+Examples:
 
-**Example:**
-```
-Use the python-api-expert agent to implement a new API endpoint for creating instructions with proper permission checks and company isolation.
-```
+- `/init` - Generate starter CLAUDE.md
+- `/test-browser http://localhost:5173/components/button` - Visual test button
+- `/security-review` - Full security audit
+- `/component LoginForm` - Create LoginForm with tests
 
----
+### Skills
 
-### react-ts-expert
+Lightweight domain knowledge executed in main conversation:
 
-**Expertise**: React 19, TypeScript strict, Tailwind CSS v4, accessibility, design system
+- **design-system** - Apply HSL color palette and Tailwind CSS classes
+- **tdd** - Guide test-first development workflow
 
-**Use for:**
-- Building React components
-- Implementing UI features
-- State management with Zustand
-- Internationalization
+Example: "Use the design-system skill to create a button component"
 
-**Critical Rules:**
-- Never use 'any' type
-- Never use pixel values (rem/Tailwind only)
-- Never hardcode text (use i18n)
-- Never deep import (barrel exports only)
-- Always add aria-label to icon buttons
+### Agents
 
-**Example:**
-```
-Use the react-ts-expert agent to create a login form component following the design system with full accessibility support.
-```
+Complex multi-step tasks spawned as separate processes:
 
----
+- **implement-ui-component** - Build complete UI component with:
+  - TDD (write tests first)
+  - Design system compliance (HSL colors, Tailwind)
+  - Responsive design
+  - Accessibility
+- **review-pr** - Comprehensive code review:
+  - Run all tests (unit + integration + E2E)
+  - Check against all guidelines
+  - Verify code coverage
+  - Suggest improvements
+- **fix-security-issue** - Security audit:
+  - Scan for OWASP Top 10 vulnerabilities
+  - Check FastAPI security (JWT, CORS, validation)
+  - Identify issues
+  - Provide fixes
+- **create-db-migration** - Database migration:
+  - Create Alembic migration
+  - Validate schema changes
+  - Check for common pitfalls
 
-### contract-tester
+Example: "Use the implement-ui-component agent to create a LoginForm"
 
-**Expertise**: Vitest, React Testing Library, Playwright, pytest, test-driven development
+## Guidelines
 
-**Use for:**
-- Writing unit tests
-- Writing integration tests
-- Writing E2E tests
-- Validating API contracts
+The `guidelines/` folder contains comprehensive coding standards with concrete examples. These are automatically loaded by agents when needed:
 
-**Critical Rule:**
-**NEVER writes implementation code** - only tests and validation
+- **coding-standards.md** - Self-documenting code philosophy, naming conventions by language (TypeScript/Python), clean code principles
+- **design-system.md** - HSL color palette, Tailwind configuration, lightness-based interaction states, responsive breakpoints
+- **security.md** - OWASP Top 10 prevention, FastAPI security, JWT auth, input validation
+- **testing.md** - TDD workflow, testing pyramid, Vitest/Playwright/pytest patterns, coverage requirements
+- **database.md** - SQLAlchemy async patterns, migration best practices, offline-first sync architecture
 
-**Example:**
-```
-Use the contract-tester agent to write comprehensive tests for the authentication feature, including happy path, edge cases, and error scenarios.
-```
+## MCP Servers (5 configured)
 
----
+Configured in `settings.json`:
 
-### dependency-synchronizer
+- **@playwright** - E2E testing, visual regression, screenshot reviews
+- **@context7** ⭐ - Up-to-date docs for 20,000+ libraries (React, FastAPI, Tailwind, etc.)
+- **@github** - Issue/PR management (requires setup - see `SETUP.md`)
+- **@sqlite** - Database inspection during development
+- **@filesystem** - File operations
 
-**Expertise**: npm, pip, version conflicts, security audits, package management
+**Setup required**: GitHub MCP needs environment variable `GITHUB_PERSONAL_ACCESS_TOKEN` or use `/install-github-app`. See `SETUP.md` for details.
 
-**Use for:**
-- Adding/updating dependencies
-- Resolving version conflicts
-- Security vulnerability scanning
-- Maintaining package.json and requirements.txt
+## Claude Code Best Practices
 
-**Example:**
-```
-Use the dependency-synchronizer agent to update React to version 19 and resolve any peer dependency conflicts.
-```
+Based on [official documentation](https://www.anthropic.com/engineering/claude-code-best-practices):
 
-## Slash Commands
+### CLAUDE.md Guidelines
 
-### /setup-project
+✅ **Keep it concise** - Minimal, universally applicable only (our template: 43 lines)
+✅ **Use file:line references** - Not code snippets (they get outdated)
+✅ **Update frequently** - Especially "Current Focus" section
+✅ **Provide alternatives** - Not just restrictions ("use X instead of Y")
+❌ **Don't include code style** - That's for linters (.prettierrc, .eslintrc, pyproject.toml)
+❌ **Don't copy code** - Reference it with file paths
 
-Initializes the complete development environment.
+### Workflow Tips
 
-**What it does:**
-- Installs frontend dependencies (npm)
-- Sets up Python virtual environment
-- Installs backend dependencies (pip)
-- Initializes database with demo data
+- Use `/init` on new projects to auto-generate CLAUDE.md
+- Update "Current Focus" daily with active tasks
+- Use `gh` CLI for GitHub operations (`gh pr create`, `gh issue list`)
+- Leverage MCP servers (Playwright for visual tests, GitHub for PRs)
+- Guidelines are reference docs - agents load them when needed
+- Run `/review` before committing to catch issues early
 
-**When to use:**
-- First time project setup
-- After cloning repository
-- After major dependency updates
-- When onboarding new team members
-
-**Usage:**
-```
-/setup-project
-```
-
----
-
-### /multi-agent-review
-
-Coordinates comprehensive code review across all specialized agents.
+## Tech Stack Best Practices
 
-**What it does:**
-- Launches python-api-expert for backend review
-- Launches react-ts-expert for frontend review
-- Launches contract-tester for test validation
-- Aggregates feedback from all agents
-
-**When to use:**
-- Before committing significant changes
-- Before creating pull requests
-- After implementing new features
-- Before merging to main branch
+This template follows official standards for:
 
-**Usage:**
-```
-/multi-agent-review                    # Review recent changes
-/multi-agent-review features/auth      # Review specific feature
-/multi-agent-review src/api/users.py   # Review specific file
-```
+### React + TypeScript
 
----
+- Functional components with hooks
+- TypeScript strict mode
+- Component composition
+- Custom hooks for reusable logic
+- ESLint + Prettier
 
-### /smart-debug
+### Python + FastAPI
 
-Intelligent error analysis using isolated subagents to prevent context pollution.
+- Type hints everywhere (Python 3.11+)
+- Pydantic validation
+- Async/await for I/O
+- SQLAlchemy 2.0 async ORM
+- Black + isort + mypy
 
-**What it does:**
-- Routes error to appropriate specialist agent
-- Analyzes error in isolated context
-- Returns concise root cause analysis
-- Provides exact fix recommendations
+### Tailwind CSS
 
-**When to use:**
-- Complex error messages
-- Build/compilation failures
-- Test failures
-- Runtime errors
+- Utility-first approach
+- HSL color system with CSS variables
+- Mobile-first responsive design
+- Component variants via data attributes
 
-**Usage:**
-```
-/smart-debug "API returns 500 on login"
-/smart-debug build error
-/smart-debug test failures in video player
-```
+### Testing (TDD)
 
-## Best Practices
+- Write tests first, then implementation
+- Testing pyramid: unit > integration > E2E
+- 80%+ code coverage
+- Playwright for E2E with visual regression
 
-### Context Isolation
+## Customization for Your Organization
 
-**Always use subagents for:**
-- Long error logs (prevents context pollution)
-- Complex debugging (isolates analysis)
-- Code reviews (parallel processing)
-- Dependency updates (version conflict resolution)
+### Updating Color Palette
 
-**Benefits:**
-- 8x more efficient token usage
-- Higher quality output (specialized knowledge)
-- Cleaner main context
-- Parallel processing capability
+Edit `.claude/guidelines/design-system.md` to customize the HSL color palette for your brand.
 
-### Agent Selection
+### Adding Custom Agents
 
-| Task Type | Agent | Why |
-|-----------|-------|-----|
-| API endpoint | python-api-expert | Database, permissions, async patterns |
-| React component | react-ts-expert | Design system, accessibility, TypeScript |
-| Write tests | contract-tester | Test methodology, never implements |
-| Package issue | dependency-synchronizer | Version resolution, security |
-| Code review | /multi-agent-review | All agents in parallel |
-| Error analysis | /smart-debug | Routes to appropriate agent |
+Create new agent files in `.claude/agents/` following the pattern of existing agents.
 
-### Parallel Processing
+### Adding Custom Commands
 
-Launch multiple agents simultaneously for maximum efficiency:
-
-```
-# Instead of sequential:
-1. Review backend
-2. Review frontend
-3. Review tests
-
-# Use parallel:
-Use /multi-agent-review (launches all 3 agents at once)
-```
-
-## MCP Servers
-
-Configured in [../.mcp.json](../.mcp.json):
-
-| Server | Purpose | Authentication |
-|--------|---------|----------------|
-| **sqlite** | Database queries and debugging | None (local file) |
-| **github** | PR management, issue tracking | GITHUB_TOKEN env var |
-| **filesystem** | Enhanced file access | None (local) |
-| **playwright** | Browser automation, E2E testing | None |
-
-### Setting up GitHub MCP
-
-```bash
-# Windows (PowerShell)
-$env:GITHUB_TOKEN="ghp_your_token_here"
-
-# Linux/Mac
-export GITHUB_TOKEN="ghp_your_token_here"
-```
-
-Get token at: https://github.com/settings/tokens (needs `repo` scope)
-
-## Permissions
-
-Configured in [settings.json](./settings.json):
-
-**Allowed:**
-- All file operations (Read, Write, Edit, Glob, Grep)
-- Bash commands
-- Web access (WebFetch, WebSearch)
-- All MCP tools
-- Task tool (for agent orchestration)
-
-**Scope:**
-- Limited to project directory only
-- No access to system files outside project
-
-## Context Documents
-
-The [../.context/](../.context/) directory provides the knowledge base for all agents:
-
-| Document | Purpose | Used By |
-|----------|---------|---------|
-| substrate.md | Project overview | All agents |
-| architecture/system_design.md | System architecture | python-api-expert, react-ts-expert |
-| guidelines/coding_standards.md | Code quality rules | All agents |
-| frontend/design_system.md | UI/UX standards | react-ts-expert |
-| backend/api_contracts.md | API specifications | python-api-expert, contract-tester |
-
-## Workflow Example
-
-### Implementing a New Feature
-
-```
-1. Plan:
-   "I need to add a user profile page with edit functionality"
-
-2. Backend (python-api-expert):
-   "Create API endpoints for:
-   - GET /api/v1/users/me/profile
-   - PATCH /api/v1/users/me/profile
-   Follow multi-tenant isolation and permission checks"
-
-3. Frontend (react-ts-expert):
-   "Create ProfilePage component with:
-   - Profile display
-   - Edit form
-   - Follow design system (no pixels, HSLA states, i18n)"
-
-4. Tests (contract-tester):
-   "Write tests for profile feature:
-   - API endpoint tests (auth, validation, company isolation)
-   - Component tests (rendering, interactions, errors)
-   - E2E test (view and edit profile)"
-
-5. Review:
-   /multi-agent-review
-
-6. Debug (if needed):
-   /smart-debug "profile update fails with 403"
-```
-
-## Tips for Maximum Efficiency
-
-1. **Use slash commands** - They orchestrate agents automatically
-2. **Leverage parallel processing** - Multiple agents work simultaneously
-3. **Keep context clean** - Delegate complex tasks to subagents
-4. **Follow TDD** - Let contract-tester write tests first
-5. **Review before commit** - Always run /multi-agent-review
-
-## Extending the Configuration
-
-### Adding a New Agent
-
-1. Create JSON file in `agents/` directory
-2. Define name, description, instructions, tools, model
-3. Reference context documents
-4. Use Task tool to invoke
-
-### Adding a New Command
-
-1. Create markdown file in `commands/` directory
-2. Document purpose, usage, implementation
-3. Include examples and troubleshooting
-4. Test with various scenarios
+Create new command files in `.claude/commands/` with `$ARGUMENTS` support.
 
 ## Support
 
-- **Context docs**: See [../.context/](../.context/)
-- **Usage examples**: Check agent JSON files
-- **Troubleshooting**: Use `/smart-debug`
-- **Architecture**: Read [substrate.md](../.context/substrate.md)
+For issues or questions about Claude Code, visit:
+
+- Claude Code documentation: https://claude.com/claude-code
+- GitHub issues: https://github.com/anthropics/claude-code/issues
+
+## Template Version
+
+Version: 1.0.0
+Last updated: 2025-12-12
+Optimized for: Claude Code + React + Vite + FastAPI + Tailwind CSS

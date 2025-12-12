@@ -7,7 +7,7 @@
         "-y",
         "mcp-sqlite",
         "--db-path",
-        "server/montavis.db"
+        "src/backend/montavis.db"
       ]
     },
     "github": {
@@ -27,10 +27,8 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\client",
-        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\server",
-        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\.context",
-        "c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\.claude"
+        "/workspace/src",
+        "/workspace/.claude"
       ]
     },
     "playwright": {

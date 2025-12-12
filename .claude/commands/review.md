@@ -1,0 +1,1 @@
+Perform a comprehensive code review by spawning the review-pr agent. Check all tests pass, verify coding standards, design system compliance, security practices, and database patterns. Provide detailed feedback with severity levels (high, medium, low) and approve or request changes.

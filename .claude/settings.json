@@ -1,20 +1,40 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(*)",
-      "Edit(*)",
-      "Write(*)",
-      "Read(c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\**)",
-      "Glob(c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\**)",
-      "Grep(c:\\Users\\Julian\\Desktop\\Software\\monta-vis\\montavis-template\\**)",
-      "WebFetch(*)",
-      "WebSearch(*)",
-      "mcp__playwright__*",
-      "mcp__filesystem__*",
-      "mcp__sqlite__*",
-      "mcp__github__*",
-      "Task(*)"
-    ],
-    "deny": []
-  }
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp-server"],
+      "description": "E2E testing, visual regression, screenshot reviews"
+    },
+    "github": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "ghcr.io/github/github-mcp-server"],
+      "description": "GitHub operations (requires GITHUB_PERSONAL_ACCESS_TOKEN env var)"
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "description": "Up-to-date documentation for 20,000+ libraries (use 'use context7' in prompts)"
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "app.db"],
+      "description": "Database inspection during development"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "description": "File operations and workspace management"
+    }
+  },
+  "allowedTools": [
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep",
+    "Task",
+    "mcp__*"
+  ],
+  "contextWindow": 200000
 }
